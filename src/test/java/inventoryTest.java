@@ -91,11 +91,7 @@ public class inventoryTest extends BaseTest{
         Assert.assertEquals(checkoutStepOnePage.complete(),"Thank you for your order!");
 
     }
-    @AfterMethod
-    public void after()
-    {
-        driver.quit();
-    }
+
     @Test
     public void buyProductsWithoutData()
     {
@@ -107,6 +103,22 @@ public class inventoryTest extends BaseTest{
         checkoutStepOnePage.setForm("","","");
 
         Assert.assertEquals(checkoutStepOnePage.getError(),"Error: First Name is required");
+    }
+    @Test
+    public void removeProductfromCart ()
+    {
+        inventoryPage.clickTShirt();
+        inventoryPage.clickBackpack();
+        inventoryPage.clickBikeLight();
+        inventoryPage.clickCart();
+        inventoryPage.removeTShirt();
 
+        Assert.assertEquals(inventoryPage.getCartNumber(),"2");
+
+    }
+    @AfterMethod
+    public void after()
+    {
+        driver.quit();
     }
 }
