@@ -96,4 +96,17 @@ public class inventoryTest extends BaseTest{
     {
         driver.quit();
     }
+    @Test
+    public void buyProductsWithoutData()
+    {
+        inventoryPage.clickBikeLight();
+        inventoryPage.clickBackpack();
+        inventoryPage.clickTShirt();
+        inventoryPage.clickCart();
+        cartPage.clickCheckout();
+        checkoutStepOnePage.setForm("","","");
+
+        Assert.assertEquals(checkoutStepOnePage.getError(),"Error: First Name is required");
+
+    }
 }
